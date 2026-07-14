@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors — lys cream/hvid med dybe grønne accenter */
+  --color-base: #F5F0E8;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #EEF0E8;
+  --color-input: #F0EDE6;
+  --color-border-subtle: #D8D4C8;
+  --color-border-strong: #B8B4A8;
+  --color-accent: #3A6B2A;
+  --color-accent-dim: #2D5220;
+  --color-text-primary: #1A2418;
+  --color-text-secondary: #6B6356;
+  --color-text-tertiary: #7A9070;
+  --color-success: #2D7A3A;
+  --color-warning: #B45309;
+  --color-danger: #B91C1C;
+
+  /* Fonts */
+  --font-display: var(--font-dm-sans), sans-serif;
+  --font-sans: var(--font-dm-sans), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #F5F0E8;
+  --foreground: #1A2418;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #F5F0E8;
+  color: #1A2418;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F5F0E8;
+  color: #1A2418;
+  font-family: var(--font-dm-sans), sans-serif;
+  min-height: 100vh;
+}
+
+@keyframes pulse-scale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 300ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-scale {
+    animation: none;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #EEF0E8;
+}
+::-webkit-scrollbar-thumb {
+  background: #B8B4A8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7A9070;
+}
+
+*:focus-visible {
+  outline: 2px solid #3A6B2A;
+  outline-offset: 2px;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  gap: 16px;
+  animation: ticker-scroll 160s linear infinite;
+  width: max-content;
+}
+.ticker-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
