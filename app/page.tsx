@@ -36,9 +36,9 @@ export default function Home() {
             <Image
               src="/logo-header.png"
               alt="BoligKalkylen"
-              width={200}
-              height={56}
-              style={{ height: "56px", width: "auto" }}
+              width={280}
+              height={52}
+              style={{ height: "52px", width: "auto" }}
               priority
             />
           </Link>
