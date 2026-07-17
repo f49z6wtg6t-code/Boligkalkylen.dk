@@ -1,5 +1,11 @@
 import { Resend } from "resend";
 
+function getResend(): Resend {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error("RESEND_API_KEY is not set");
+  return new Resend(key);
+}
+
 export interface LeadData {
   id?: string;
   navn: string;
@@ -11,8 +17,6 @@ export interface LeadData {
   input_data: Record<string, unknown>;
   created_at?: string;
 }
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 function formatCurrency(n: number): string {
   return new Intl.NumberFormat("da-DK", {
@@ -77,7 +81,7 @@ export async function sendLeadNotification(lead: LeadData): Promise<void> {
   const calcLabel =
     lead.calculator_type === "solceller" ? "Solceller" : "Badeværelse";
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from:
       process.env.RESEND_FROM_INTERNAL ??
       "BoligKalkylen Intern <noreply@boligkalkylen.dk>",
@@ -127,7 +131,7 @@ function buildCustomerConfirmationEmail(lead: LeadData): string {
 export async function sendCustomerConfirmation(lead: LeadData): Promise<void> {
   const calcLabel = lead.calculator_type === "solceller" ? "Solcelle" : "Badeværelse";
 
-  await resend.emails.send({
+  await getResend().emails.send({
     from:
       process.env.RESEND_FROM_NOREPLY ??
       "BoligKalkylen <noreply@boligkalkylen.dk>",
