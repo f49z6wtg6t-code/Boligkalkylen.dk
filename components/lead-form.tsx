@@ -226,7 +226,7 @@ export default function LeadForm({
               </div>
             </div>
 
-            <label className="flex items-start gap-3 cursor-pointer">
+            <label className="flex items-start gap-3 cursor-pointer" onClick={() => setForm((f) => ({ ...f, samtykke: !f.samtykke }))}>
               <div className="relative mt-0.5 flex-shrink-0">
                 <input
                   type="checkbox"
@@ -242,7 +242,6 @@ export default function LeadForm({
                     backgroundColor: form.samtykke ? "#3A6B2A" : "#FFFFFF",
                     border: form.samtykke ? "none" : "1px solid #B8B0A4",
                   }}
-                  onClick={() => setForm((f) => ({ ...f, samtykke: !f.samtykke }))}
                 >
                   {form.samtykke && (
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
