@@ -38,7 +38,7 @@ export default function Home() {
               alt="BoligKalkylen"
               width={280}
               height={52}
-              style={{ height: "52px", width: "auto" }}
+              style={{ height: "52px", width: "auto", mixBlendMode: "multiply" }}
               priority
             />
           </Link>
@@ -69,12 +69,8 @@ export default function Home() {
             <span style={{ color: "#C9F031" }}>egentlig?</span>
           </h1>
 
-          <p className="text-lg font-medium mb-3" style={{ color: "#1E1A14" }}>
-            De fleste boligejere får først svaret, når håndværkeren har været på besøg. Vi mener du fortjener et ærligt estimat — inden du tager telefonen.
-          </p>
-
-          <p className="text-base mb-10" style={{ color: "#6B6356" }}>
-            BoligKalkylen giver dig et gratis, øjeblikkeligt prisestimat på solceller eller badeværelsesrenovering baseret på dine egne tal. Ingen ventetid, ingen forpligtelse, ingen salgsopkald — bare et præcist udgangspunkt, så du ved hvad du går ind til.
+          <p className="text-lg font-medium mb-10" style={{ color: "#1E1A14" }}>
+            Få et ærligt prisestimat på solceller eller badeværelse — på under 1 minut.
           </p>
 
         </div>
@@ -82,11 +78,11 @@ export default function Home() {
 
       {/* Sådan virker det */}
       <section className="px-4 sm:px-6 pb-10">
-        <div className="max-w-5xl mx-auto grid sm:grid-cols-3 gap-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
-            { num: "1", text: "Vælg din beregner og indtast dine tal" },
-            { num: "2", text: "Se dit estimat med det samme — ingen kontaktoplysninger nødvendigt" },
-            { num: "3", text: "Ønsker du et rigtigt tilbud, sender du blot din forespørgsel — vi vender tilbage inden for 24 timer" },
+            { num: "1", text: "Vælg beregner" },
+            { num: "2", text: "Se dit estimat — ingen kontaktinfo kræves" },
+            { num: "3", text: "Send forespørgsel — svar inden 24 timer" },
           ].map((step) => (
             <div
               key={step.num}

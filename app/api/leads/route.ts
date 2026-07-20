@@ -49,8 +49,12 @@ export async function POST(request: NextRequest) {
     .single();
 
   if (error) {
-    console.error("Supabase insert error:", error);
-    return NextResponse.json({ error: "Databasefejl" }, { status: 500 });
+    console.error("Supabase insert error:", {
+      message: error.message,
+      supabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+      serviceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+    });
+    return NextResponse.json({ error: "Databasefejl", details: error.message }, { status: 500 });
   }
 
   const fullLead: LeadData = {
