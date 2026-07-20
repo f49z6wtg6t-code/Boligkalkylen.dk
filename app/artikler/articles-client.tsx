@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import type { ArticleFrontmatter } from "@/lib/articles";
+import { Search } from "lucide-react";
 
 const CATEGORIES = [
   { value: "alle", label: "Alle" },
@@ -27,30 +28,39 @@ function formatDate(iso: string): string {
 
 export default function ArticlesClient({ articles }: { articles: ArticleFrontmatter[] }) {
   const [activeCategory, setActiveCategory] = useState("alle");
+  const [search, setSearch] = useState("");
 
-  const filtered =
-    activeCategory === "alle"
-      ? articles
-      : articles.filter((a) => a.category === activeCategory);
+  const filtered = articles
+    .filter((a) => activeCategory === "alle" || a.category === activeCategory)
+    .filter((a) =>
+      search === "" ||
+      a.title.toLowerCase().includes(search.toLowerCase()) ||
+      a.excerpt.toLowerCase().includes(search.toLowerCase())
+    );
 
   return (
     <main className="flex flex-col min-h-screen" style={{ backgroundColor: "#F5F0E8" }}>
       {/* Header */}
       <header className="border-b" style={{ borderColor: "#F5F0E8", backgroundColor: "#F5F0E8" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-1 text-sm">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ color: "rgba(0,0,0,0.4)" }}>
+          <Link href="/" className="flex items-center gap-1 text-sm w-20" style={{ color: "rgba(0,0,0,0.4)" }}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span style={{ color: "rgba(0,0,0,0.4)" }}>Tilbage</span>
+            Tilbage
           </Link>
-          <span className="text-sm font-semibold" style={{ color: "#3A6B2A", fontFamily: "var(--font-dm-sans)" }}>
-            BoligKalkylen
-          </span>
-          <div className="w-16" />
-          <Link href="/artikler" className="text-sm w-20 text-right" style={{ color: "#4A4540" }}>
-            Artikler
+          <Link href="/">
+            <Image
+              src="/logo-header.png"
+              alt="BoligKalkylen"
+              width={600}
+              height={160}
+              className="h-32 w-auto sm:h-40"
+              style={{ mixBlendMode: "multiply" }}
+              priority
+            />
           </Link>
+          <div className="w-20" />
         </div>
       </header>
 
@@ -65,6 +75,23 @@ export default function ArticlesClient({ articles }: { articles: ArticleFrontmat
           <p className="text-lg mb-8" style={{ color: "#6B6356" }}>
             Generelle guides om solceller og badeværelsesrenovering — baseret på danske priser og lovgivning.
           </p>
+
+          {/* Søgefelt */}
+          <div className="relative mb-4">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: "#9E9486" }} />
+            <input
+              type="text"
+              placeholder="Søg i artikler..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm outline-none"
+              style={{
+                backgroundColor: "#EDE8DC",
+                border: "1px solid #D4CCC0",
+                color: "#1E1A14",
+              }}
+            />
+          </div>
 
           {/* Category filter */}
           <div className="flex flex-wrap gap-2 mb-8">

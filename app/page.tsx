@@ -43,7 +43,11 @@ export default function Home() {
               priority
             />
           </Link>
-          <Link href="/artikler" className="text-sm transition-colors w-20 text-right" style={{ color: "#4A4540" }}>
+          <Link
+            href="/artikler"
+            className="text-sm font-semibold rounded-full px-4 py-2 transition-colors"
+            style={{ backgroundColor: "#3A6B2A", color: "#FFFFFF" }}
+          >
             Artikler
           </Link>
         </div>
