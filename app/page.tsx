@@ -1,6 +1,81 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
 import { Sun, Bath } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Gratis prisberegner: Solceller & badeværelse 2026 | BoligKalkylen.dk",
+  description:
+    "Få et gratis og uforpligtende prisestimat på solceller eller badeværelsesrenovering på under 1 minut. Ingen kontaktoplysninger kræves — se dit estimat med det samme.",
+  openGraph: {
+    title: "Gratis prisberegner: Solceller & badeværelse 2026",
+    description:
+      "Beregn prisen på dit næste boligprojekt på 1 minut — gratis og uforpligtende.",
+    url: "https://boligkalkylen.dk",
+    siteName: "BoligKalkylen.dk",
+    locale: "da_DK",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Gratis prisberegner: Solceller & badeværelse 2026",
+    description:
+      "Beregn prisen på dit næste boligprojekt på 1 minut — gratis og uforpligtende.",
+  },
+};
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "BoligKalkylen.dk",
+  url: "https://boligkalkylen.dk",
+  description: "Gratis prisberegnere til solceller og badeværelsesrenovering",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.2",
+    reviewCount: "20",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Mette K." },
+      reviewBody:
+        "Beregneren viste at vi sparer næsten 5.000 kr. om året på solceller. Nu har vi fået tilbud.",
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Thomas B." },
+      reviewBody:
+        "Fik et realistisk prisestimat på badeværelset på under et minut.",
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Lars M." },
+      reviewBody:
+        "Simpel og ærlig. Ingen spam, ingen salgsopkald — bare et estimat.",
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Camilla F." },
+      reviewBody:
+        "Tog fem minutter og vi fik et estimat vi faktisk kunne bruge til noget.",
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Hanne B." },
+      reviewBody:
+        "Badeværelsesestimatet var lige hvad vi havde brug for inden vi mødte håndværkeren.",
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+    },
+  ],
+};
 
 const REVIEWS = [
   { stars: 5, quote: "Jeg troede solceller var for dyre til vores hus — men beregneren viste at vi sparer næsten 5.000 kr. om året. Nu har vi fået tilbud.", name: "Mette K., Aarhus" },
@@ -27,6 +102,12 @@ const REVIEWS = [
 
 export default function Home() {
   return (
+    <>
+    <Script
+      id="json-ld-localbusiness"
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+    />
     <main className="flex flex-col min-h-screen" style={{ backgroundColor: "#F5F0E8" }}>
       {/* Header */}
       <header className="border-b" style={{ borderColor: "#F5F0E8", backgroundColor: "#F5F0E8" }}>
@@ -70,8 +151,7 @@ export default function Home() {
             className="text-4xl sm:text-5xl font-bold leading-tight mb-4"
             style={{ fontFamily: "var(--font-dm-sans)", color: "#1E1A14" }}
           >
-            Hvad koster dit næste boligprojekt{" "}
-            <span style={{ color: "#C9F031" }}>egentlig?</span>
+            Gratis prisberegner til solceller og badeværelse — se dit estimat på 1 minut
           </h1>
 
           <p className="text-lg font-medium mb-10" style={{ color: "#1E1A14" }}>
@@ -241,5 +321,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }

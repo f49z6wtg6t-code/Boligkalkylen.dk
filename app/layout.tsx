@@ -16,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BoligKalkylen.dk — Gratis beregner: Solceller & badeværelse (2026)",
+  title: "Gratis prisberegner: Solceller & badeværelse 2026 | BoligKalkylen.dk",
   description:
-    "Beregn hurtigt hvad solceller eller en badeværelsesrenovering koster dig i 2026 — og modtag gratis, uforpligtende tilbud fra 2-3 lokale håndværkere.",
+    "Få et gratis og uforpligtende prisestimat på solceller eller badeværelsesrenovering på under 1 minut. Ingen kontaktoplysninger kræves — se dit estimat med det samme.",
   metadataBase: new URL("https://boligkalkylen.dk"),
   keywords: [
     "solcelleberegner",
@@ -30,13 +30,19 @@ export const metadata: Metadata = {
     "BoligKalkylen",
   ],
   openGraph: {
-    title: "BoligKalkylen.dk — Gratis beregner: Solceller & badeværelse (2026)",
+    title: "Gratis prisberegner: Solceller & badeværelse 2026",
     description:
-      "Beregn hvad solceller eller en badeværelsesrenovering koster i 2026 — og modtag gratis tilbud fra lokale håndværkere.",
+      "Beregn prisen på dit næste boligprojekt på 1 minut — gratis og uforpligtende.",
     url: "https://boligkalkylen.dk",
     siteName: "BoligKalkylen.dk",
     locale: "da_DK",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Gratis prisberegner: Solceller & badeværelse 2026",
+    description:
+      "Beregn prisen på dit næste boligprojekt på 1 minut — gratis og uforpligtende.",
   },
 };
 
