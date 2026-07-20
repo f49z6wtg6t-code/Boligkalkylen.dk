@@ -35,9 +35,9 @@ export default function CalculatorShell({
             <Image
               src="/logo-header.png"
               alt="BoligKalkylen"
-              width={160}
-              height={45}
-              className="h-12 w-auto sm:h-14"
+              width={320}
+              height={80}
+              className="h-16 w-auto sm:h-20"
               style={{ mixBlendMode: "multiply" }}
             />
           </Link>

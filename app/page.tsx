@@ -36,9 +36,9 @@ export default function Home() {
             <Image
               src="/logo-header.png"
               alt="BoligKalkylen"
-              width={280}
-              height={52}
-              className="h-12 w-auto sm:h-14"
+              width={400}
+              height={80}
+              className="h-16 w-auto sm:h-20"
               style={{ mixBlendMode: "multiply" }}
               priority
             />
