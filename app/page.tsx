@@ -38,7 +38,8 @@ export default function Home() {
               alt="BoligKalkylen"
               width={280}
               height={52}
-              style={{ height: "52px", width: "auto", mixBlendMode: "multiply" }}
+              className="h-12 w-auto sm:h-14"
+              style={{ mixBlendMode: "multiply" }}
               priority
             />
           </Link>

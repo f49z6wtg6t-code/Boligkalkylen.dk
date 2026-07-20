@@ -37,7 +37,8 @@ export default function CalculatorShell({
               alt="BoligKalkylen"
               width={160}
               height={45}
-              style={{ height: "45px", width: "auto" }}
+              className="h-12 w-auto sm:h-14"
+              style={{ mixBlendMode: "multiply" }}
             />
           </Link>
           <div className="w-24" />
