@@ -2,6 +2,9 @@ import { getAllArticles } from "@/lib/articles";
 import ArticlesClient from "./articles-client";
 import type { Metadata } from "next";
 
+// Revalidér siden hver dag kl. midnat så nye artikler vises automatisk
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Artikler og guides — BoligKalkylen.dk",
   description:

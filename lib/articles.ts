@@ -22,12 +22,15 @@ export function getAllArticles(): ArticleFrontmatter[] {
 
   const files = fs.readdirSync(ARTICLES_DIR).filter((f) => f.endsWith(".md"));
 
+  const today = new Date().toISOString().split("T")[0];
+
   return files
     .map((filename) => {
       const raw = fs.readFileSync(path.join(ARTICLES_DIR, filename), "utf-8");
       const { data } = matter(raw);
       return data as ArticleFrontmatter;
     })
+    .filter((a) => a.publishedAt <= today)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 }
 
