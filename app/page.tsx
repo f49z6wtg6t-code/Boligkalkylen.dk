@@ -31,6 +31,13 @@ const JSON_LD = {
   name: "BoligKalkylen.dk",
   url: "https://boligkalkylen.dk",
   description: "Gratis prisberegnere til solceller og badeværelsesrenovering",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "København",
+    addressCountry: "DK",
+  },
+  priceRange: "Fra 80.000 kr.",
+  image: "https://www.boligkalkylen.dk/logo-header.png",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.2",
