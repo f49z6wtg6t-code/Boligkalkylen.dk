@@ -6,9 +6,9 @@ import type { Metadata } from "next";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "Artikler og guides — BoligKalkylen.dk",
+  title: "Guides om solceller & badeværelse | BoligKalkylen.dk",
   description:
-    "Læs vores guides om solceller og badeværelsesrenovering — baseret på danske markedspriser og lovgivning.",
+    "Læs vores guides om priser, regler og råd til solceller og badeværelsesrenovering. Baseret på danske 2026-priser og lovgivning.",
 };
 
 export default function ArtiklerPage() {

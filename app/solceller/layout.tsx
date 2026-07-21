@@ -1,11 +1,37 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Solcelleberegner 2026 — beregn din besparelse gratis | BoligKalkylen.dk",
+  title: "Solcelleberegner 2026 — beregn din besparelse gratis",
   description:
-    "Beregn din årlige besparelse, tilbagebetalingstid og CO₂-reduktion ved solceller. Baseret på 2026-priser og danske elafgiftsregler. Gratis og uforpligtende.",
+    "Se din årlige besparelse, tilbagebetalingstid og CO₂-reduktion ved solceller. Danske 2026-priser og elafgiftsregler. Gratis.",
+};
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Solcelleberegner — BoligKalkylen.dk",
+  url: "https://boligkalkylen.dk/solceller",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "DKK",
+  },
+  description:
+    "Gratis solcelleberegner — beregn din årlige besparelse, tilbagebetalingstid og CO₂-reduktion baseret på 2026-priser og elafgiftsregler.",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <Script
+        id="json-ld-solceller"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
+      {children}
+    </>
+  );
 }

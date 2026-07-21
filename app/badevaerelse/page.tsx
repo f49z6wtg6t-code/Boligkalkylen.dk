@@ -1,9 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import CalculatorShell from "@/components/calculator-shell";
 import LeadForm from "@/components/lead-form";
 import FAQSection from "@/components/faq-section";
+
+const RELATED_ARTICLES = [
+  { slug: "badevaerelse-renovering-pris-2026", title: "Pris på badeværelsesrenovering 2026" },
+  { slug: "totalrenovering-badevaerelse-pris", title: "Hvad koster en totalrenovering?" },
+  { slug: "badevaerelse-5-fejl-undgaa", title: "5 fejl du skal undgå ved badeværelse" },
+];
 import {
   calculateBadevaerelse,
   type BadevaerelseInputs,
@@ -117,6 +124,7 @@ export default function BadevaerelserPage() {
   };
 
   return (
+    <>
     <CalculatorShell
       title="Badeværelsesberegner"
       description="Vælg størrelse, omfang og materialer for at se et realistisk prisestimat."
@@ -360,5 +368,30 @@ export default function BadevaerelserPage() {
         </div>
       </div>
     </CalculatorShell>
+
+    {/* Læs mere */}
+    <section className="px-4 sm:px-6 py-10" style={{ borderTop: "1px solid #D4CCC0" }}>
+      <div className="max-w-6xl mx-auto">
+        <p className="text-sm font-semibold mb-4" style={{ color: "#6B6356" }}>
+          Læs mere om badeværelsesrenovering
+        </p>
+        <div className="flex flex-wrap gap-3">
+          {RELATED_ARTICLES.map((a) => (
+            <Link
+              key={a.slug}
+              href={`/artikler/${a.slug}`}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-150"
+              style={{ backgroundColor: "#EDE8DC", border: "1px solid #D4CCC0", color: "#3A6B2A" }}
+            >
+              {a.title}
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+    </>
   );
 }

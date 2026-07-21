@@ -16,9 +16,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gratis prisberegner: Solceller & badeværelse 2026 | BoligKalkylen.dk",
+  title: "Prisberegner: Solceller & badeværelse | BoligKalkylen.dk",
   description:
-    "Få et gratis og uforpligtende prisestimat på solceller eller badeværelsesrenovering på under 1 minut. Ingen kontaktoplysninger kræves — se dit estimat med det samme.",
+    "Beregn prisen på solceller eller badeværelse på 1 minut. Gratis og uforpligtende — ingen kontaktoplysninger kræves.",
   metadataBase: new URL("https://boligkalkylen.dk"),
   keywords: [
     "solcelleberegner",
