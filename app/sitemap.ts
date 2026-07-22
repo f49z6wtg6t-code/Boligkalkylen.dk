@@ -48,6 +48,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://boligkalkylen.dk/badevaerelse-5kvm",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/badevaerelse-10kvm",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/badevaerelse-totalrenovering",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/solceller-6kw",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/solceller-eternittag",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
       url: "https://boligkalkylen.dk/artikler",
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
