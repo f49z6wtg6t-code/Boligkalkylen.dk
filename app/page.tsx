@@ -162,7 +162,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg font-medium mb-10" style={{ color: "#1E1A14" }}>
-            Få et ærligt prisestimat på solceller eller badeværelse — på under 1 minut.
+            Solceller, badeværelse, maling, gulvafslibning eller isolering — vælg din beregner og se et ærligt estimat på under 1 minut.
           </p>
 
         </div>
