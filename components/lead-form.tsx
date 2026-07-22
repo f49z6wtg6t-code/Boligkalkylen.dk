@@ -96,15 +96,37 @@ export default function LeadForm({
     );
   }
 
+  const ALL_REVIEWS = [
+    { stars: 5, quote: "Estimatet matchede tilbuddet næsten til punkt og prikke.", name: "Mette K." },
+    { stars: 5, quote: "Tog fem minutter og vi vidste hvad vi gik ind til.", name: "Rasmus T." },
+    { stars: 4, quote: "Meget bedre end at ringe rundt til håndværkere.", name: "Camilla F." },
+    { stars: 5, quote: "Vi stod langt stærkere da vi mødte håndværkeren med et konkret estimat.", name: "Hanne B." },
+    { stars: 4, quote: "Prøvede både standard og premium — god måde at se hvad ekstra koster.", name: "Michael D." },
+    { stars: 5, quote: "Ingen spam, ingen salgsopkald. Bare et ærligt estimat.", name: "Lars M." },
+    { stars: 5, quote: "Hurtig bekræftelse og professionelt svar. Imponerende.", name: "Anette W." },
+    { stars: 4, quote: "Vi havde fået tre vidt forskellige tilbud. Beregneren satte det hele i perspektiv.", name: "Claus J." },
+    { stars: 5, quote: "Brugte det som udgangspunkt da vi indhentede tilbud. Virker.", name: "Sofie M." },
+    { stars: 4, quote: "Præcis nok til at vi kunne tage en beslutning uden at ringe rundt.", name: "Henrik N." },
+    { stars: 5, quote: "Beregneren forklarede hvad der påvirker prisen. Lærerigt.", name: "Maria S." },
+    { stars: 4, quote: "Giver et realistisk interval — ikke et kunstigt lavt tal for at lokke.", name: "Jens P." },
+  ];
+
+  // Pick 3 pseudo-random reviews based on calculator_type so each calculator shows different ones
+  const OFFSETS: Record<string, number> = {
+    solceller: 0, badevaerelse: 3, maler: 6, gulv: 9, isolering: 1,
+  };
+  const offset = OFFSETS[calculator_type] ?? 0;
+  const reviews = [
+    ALL_REVIEWS[offset % ALL_REVIEWS.length],
+    ALL_REVIEWS[(offset + 1) % ALL_REVIEWS.length],
+    ALL_REVIEWS[(offset + 2) % ALL_REVIEWS.length],
+  ];
+
   return (
     <>
     <div className="grid grid-cols-3 gap-2 mb-3">
-      {[
-        { stars: 5, quote: "Estimatet matchede tilbuddet næsten til punkt og prikke.", name: "Mette K." },
-        { stars: 5, quote: "Tog fem minutter og vi vidste hvad vi gik ind til.", name: "Rasmus T." },
-        { stars: 4, quote: "Meget bedre end at ringe rundt til håndværkere.", name: "Camilla F." },
-      ].map((r) => (
-        <div key={r.name} className="rounded-xl p-3" style={{ backgroundColor: "#F0EBE0", border: "1px solid #D4CCC0" }}>
+      {reviews.map((r) => (
+        <div key={r.name + r.quote} className="rounded-xl p-3" style={{ backgroundColor: "#F0EBE0", border: "1px solid #D4CCC0" }}>
           <div className="text-xs mb-1" style={{ color: "#3A6B2A" }}>{"★".repeat(r.stars)}</div>
           <p className="text-xs leading-snug mb-1" style={{ color: "#2D3A28" }}>{r.quote}</p>
           <p className="text-[10px]" style={{ color: "#9E9486" }}>{r.name}</p>
