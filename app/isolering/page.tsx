@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import CalculatorShell from "@/components/calculator-shell";
+
+const RELATED_ARTICLES = [
+  { slug: "solceller-elafgift-2026-regler", title: "Nye energiregler 2026" },
+  { slug: "solceller-hvornaar-er-det-for-sent", title: "Er det for sent at energirenovere?" },
+  { slug: "solceller-spar-penge-forberedelse", title: "Sådan sparer du penge på din installation" },
+];
 import LeadForm from "@/components/lead-form";
 import FAQSection from "@/components/faq-section";
 import { calculateIsolering, type IsoleringsType, type LoftTykkelse } from "@/lib/calculators/isolering";
@@ -68,6 +75,7 @@ export default function IsoleringsPage() {
   };
 
   return (
+    <>
     <CalculatorShell
       title="Isoleringsberegner"
       description="Beregn prisen på efterisolering og din estimerede årlige varmebesparelse — baseret på danske 2026-priser."
@@ -201,5 +209,30 @@ export default function IsoleringsPage() {
         )}
       </div>
     </CalculatorShell>
+
+    {/* Læs mere */}
+    <section className="px-4 sm:px-6 py-10" style={{ borderTop: "1px solid #D4CCC0" }}>
+      <div className="max-w-6xl mx-auto">
+        <p className="text-sm font-semibold mb-4" style={{ color: "#6B6356" }}>
+          Læs mere om energirenovering
+        </p>
+        <div className="flex flex-wrap gap-3">
+          {RELATED_ARTICLES.map((a) => (
+            <Link
+              key={a.slug}
+              href={`/artikler/${a.slug}`}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-150"
+              style={{ backgroundColor: "#EDE8DC", border: "1px solid #D4CCC0", color: "#3A6B2A" }}
+            >
+              {a.title}
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+    </>
   );
 }

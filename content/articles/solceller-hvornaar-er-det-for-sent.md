@@ -4,7 +4,7 @@ slug: "solceller-hvornaar-er-det-for-sent"
 excerpt: "Mange venter med solceller fordi de tror priserne falder yderligere. Her er den faktuelle analyse af om det kan betale sig at vente — eller om nu er det rigtige tidspunkt."
 category: "solceller"
 publishedAt: "2026-07-20"
-relatedCalculator: "/solceller"
+relatedCalculator: "/isolering"
 ---
 
 "Skal jeg vente til priserne falder yderligere?" Er det et spørgsmål du stiller dig selv om solceller? Her er den ærlige analyse.

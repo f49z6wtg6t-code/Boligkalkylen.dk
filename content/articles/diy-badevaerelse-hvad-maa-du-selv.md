@@ -4,7 +4,7 @@ slug: "diy-badevaerelse-hvad-maa-du-selv"
 excerpt: "Du kan spare mange penge ved at gøre noget selv. Men VVS og el kræver autoriserede fagfolk. Her er den præcise grænse — og de bedste DIY-opgaver til badeværelset."
 category: "badevaerelse"
 publishedAt: "2026-07-20"
-relatedCalculator: "/badevaerelse"
+relatedCalculator: "/maler"
 ---
 
 Mange overvejer at gøre noget selv på badeværelset for at spare penge. Her er præcis hvad loven tillader — og hvilke opgaver der reelt er DIY-venlige.

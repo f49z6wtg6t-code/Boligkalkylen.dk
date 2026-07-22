@@ -4,7 +4,7 @@ slug: "badevaerelse-renovering-pris-2026"
 excerpt: "Prisen på badeværelsesrenovering varierer enormt. Se hvad du realistisk skal budgettere for overfladisk renovering vs. totalrenovering i 2026."
 category: "badevaerelse"
 publishedAt: "2026-07-03"
-relatedCalculator: "/badevaerelse"
+relatedCalculator: "/gulv"
 ---
 
 Badeværelsesrenovering er et af de projekter der oftest overskrider budgettet. Her er de reelle 2026-priser.

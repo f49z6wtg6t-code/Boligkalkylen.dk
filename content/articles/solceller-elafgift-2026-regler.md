@@ -4,7 +4,7 @@ slug: "solceller-elafgift-2026-regler"
 excerpt: "Selvforbrugt solcellestrøm er permanent afgiftsfritaget. Og den generelle elafgift er sænket til næsten nul i 2026–2027. Her er hvad det betyder for dit regnestykke."
 category: "solceller"
 publishedAt: "2026-07-03"
-relatedCalculator: "/solceller"
+relatedCalculator: "/isolering"
 ---
 
 To vigtige elafgiftsregler der påvirker solcelleregnestykket — og som mange kalkulatorer ignorerer.
