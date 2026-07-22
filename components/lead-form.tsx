@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 interface LeadFormProps {
-  calculator_type: "solceller" | "badevaerelse";
+  calculator_type: "solceller" | "badevaerelse" | "maler" | "gulv" | "isolering";
   beregnet_vaerdi: number;
   input_data: Record<string, unknown>;
 }
@@ -35,6 +35,8 @@ export default function LeadForm({
   const label =
     calculator_type === "solceller"
       ? `en estimeret besparelse på ${formatCurrency(beregnet_vaerdi)} kr/år`
+      : calculator_type === "isolering"
+      ? `et estimat på ${formatCurrency(beregnet_vaerdi)} kr med en varmebesparelse`
       : `et estimat på ${formatCurrency(beregnet_vaerdi)} kr`;
 
   async function handleSubmit(e: React.FormEvent) {

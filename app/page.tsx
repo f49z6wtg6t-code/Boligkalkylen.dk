@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
-import { Sun, Bath } from "lucide-react";
+import { Sun, Bath, Paintbrush, FlipVertical, Layers } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -158,7 +158,7 @@ export default function Home() {
             className="text-4xl sm:text-5xl font-bold leading-tight mb-4"
             style={{ fontFamily: "var(--font-dm-sans)", color: "#1E1A14" }}
           >
-            Gratis prisberegner til solceller og badeværelse — se dit estimat på 1 minut
+            Gratis prisberegnere til dit næste boligprojekt — se estimat på 1 minut
           </h1>
 
           <p className="text-lg font-medium mb-10" style={{ color: "#1E1A14" }}>
@@ -195,90 +195,83 @@ export default function Home() {
 
       {/* Calculator cards */}
       <section className="px-4 sm:px-6 pb-16">
-        <div className="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6">
-          <Link
-            href="/solceller"
-            className="group flex flex-col rounded-3xl p-12 transition-all duration-200 hover:scale-[1.02]"
-            style={{
-              background: "linear-gradient(135deg, #2D5220 0%, #3A6B2A 60%, #4a8a36 100%)",
-              border: "1px solid #2D5220",
-              boxShadow: "0 8px 32px rgba(45,82,32,0.25)",
-            }}
-          >
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-              style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)" }}
+        <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            {
+              href: "/solceller",
+              icon: <Sun size={24} color="#FFFFFF" strokeWidth={1.5} />,
+              title: "Solcelleberegner",
+              desc: "Beregn din årlige besparelse, tilbagebetalingstid og CO₂-reduktion baseret på dit elforbrug og tagforhold.",
+              example: "Eks: 4.000 kWh/år → ca. 4.700 kr./år i besparelse",
+            },
+            {
+              href: "/badevaerelse",
+              icon: <Bath size={24} color="#FFFFFF" strokeWidth={1.5} />,
+              title: "Badeværelsesberegner",
+              desc: "Få et realistisk prisestimat på din badeværelsesrenovering — tilpasset størrelse, omfang og materialer.",
+              example: "Eks: 5–10 kvm totalrenovering → ca. 130.000–260.000 kr.",
+            },
+            {
+              href: "/maler",
+              icon: <Paintbrush size={24} color="#FFFFFF" strokeWidth={1.5} />,
+              title: "Malerberegner",
+              desc: "Beregn prisen på indvendig maling af din bolig baseret på areal, omfang og overfladernes tilstand.",
+              example: "Eks: 80 m² med spartling → ca. 20.000–32.000 kr.",
+            },
+            {
+              href: "/gulv",
+              icon: <FlipVertical size={24} color="#FFFFFF" strokeWidth={1.5} />,
+              title: "Gulvafslibningsberegner",
+              desc: "Beregn prisen på afslibning og lakering af trægulv baseret på areal, gulvets stand og efterbehandling.",
+              example: "Eks: 50 m² god stand + lakering → ca. 7.000–8.500 kr.",
+            },
+            {
+              href: "/isolering",
+              icon: <Layers size={24} color="#FFFFFF" strokeWidth={1.5} />,
+              title: "Isoleringsberegner",
+              desc: "Beregn pris og årlig varmebesparelse ved efterisolering af loft, hulmur eller ydervæg.",
+              example: "Eks: 100 m² loftisolering → ca. 2.500–4.000 kr./år i besparelse",
+            },
+          ].map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className="group flex flex-col rounded-3xl p-8 transition-all duration-200 hover:scale-[1.02]"
+              style={{
+                background: "linear-gradient(135deg, #2D5220 0%, #3A6B2A 60%, #4a8a36 100%)",
+                border: "1px solid #2D5220",
+                boxShadow: "0 8px 32px rgba(45,82,32,0.25)",
+              }}
             >
-              <Sun size={26} color="#FFFFFF" strokeWidth={1.5} />
-            </div>
-            <h2
-              className="text-2xl font-bold mb-4 whitespace-nowrap"
-              style={{ fontFamily: "var(--font-dm-sans)", color: "#FFFFFF" }}
-            >
-              Solcelleberegner
-            </h2>
-            <p className="text-base mb-3 flex-1" style={{ color: "rgba(255,255,255,0.85)", lineHeight: 1.6 }}>
-              Beregn din årlige besparelse, tilbagebetalingstid og CO₂-reduktion
-              baseret på dit elforbrug og tagforhold.
-            </p>
-            <p
-              className="text-sm mb-8"
-              style={{ color: "rgba(255,255,255,0.55)" }}
-            >
-              Eks: 4.000 kWh/år → ca. 4.700 kr./år i besparelse
-            </p>
-            <span
-              className="inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-6 text-base font-semibold"
-              style={{ backgroundColor: "rgba(255,255,255,0.18)", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.3)" }}
-            >
-              Beregn nu
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-          </Link>
-
-          <Link
-            href="/badevaerelse"
-            className="group flex flex-col rounded-3xl p-12 transition-all duration-200 hover:scale-[1.02]"
-            style={{
-              background: "linear-gradient(135deg, #2D5220 0%, #3A6B2A 60%, #4a8a36 100%)",
-              border: "1px solid #2D5220",
-              boxShadow: "0 8px 32px rgba(45,82,32,0.25)",
-            }}
-          >
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6"
-              style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)" }}
-            >
-              <Bath size={26} color="#FFFFFF" strokeWidth={1.5} />
-            </div>
-            <h2
-              className="text-2xl font-bold mb-4 whitespace-nowrap"
-              style={{ fontFamily: "var(--font-dm-sans)", color: "#FFFFFF" }}
-            >
-              Badeværelsesberegner
-            </h2>
-            <p className="text-base mb-3 flex-1" style={{ color: "rgba(255,255,255,0.85)", lineHeight: 1.6 }}>
-              Få et realistisk prisestimat på din badeværelsesrenovering — tilpasset
-              størrelse, omfang og materialer.
-            </p>
-            <p
-              className="text-sm mb-8"
-              style={{ color: "rgba(255,255,255,0.55)" }}
-            >
-              Eks: 5–10 kvm totalrenovering → ca. 130.000–260.000 kr.
-            </p>
-            <span
-              className="inline-flex items-center justify-center gap-2 rounded-xl py-3.5 px-6 text-base font-semibold"
-              style={{ backgroundColor: "rgba(255,255,255,0.18)", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.3)" }}
-            >
-              Beregn nu
-              <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-          </Link>
+              <div
+                className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                style={{ backgroundColor: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)" }}
+              >
+                {card.icon}
+              </div>
+              <h2
+                className="text-xl font-bold mb-3"
+                style={{ fontFamily: "var(--font-dm-sans)", color: "#FFFFFF" }}
+              >
+                {card.title}
+              </h2>
+              <p className="text-sm mb-3 flex-1" style={{ color: "rgba(255,255,255,0.85)", lineHeight: 1.6 }}>
+                {card.desc}
+              </p>
+              <p className="text-xs mb-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+                {card.example}
+              </p>
+              <span
+                className="inline-flex items-center justify-center gap-2 rounded-xl py-3 px-5 text-sm font-semibold"
+                style={{ backgroundColor: "rgba(255,255,255,0.18)", color: "#FFFFFF", border: "1px solid rgba(255,255,255,0.3)" }}
+              >
+                Beregn nu
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </Link>
+          ))}
         </div>
       </section>
 
