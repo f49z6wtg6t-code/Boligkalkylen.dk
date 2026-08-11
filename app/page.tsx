@@ -310,10 +310,7 @@ export default function Home() {
       <footer className="mt-auto border-t py-6" style={{ borderColor: "#D4CCC0" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm" style={{ color: "#6B6356" }}>
-            © {new Date().getFullYear()} BoligKalkylen.dk — Drevet af{" "}
-            <a href="https://motivobyg.dk" style={{ color: "#4A4540" }}>
-              Motivo Gruppen
-            </a>
+            © {new Date().getFullYear()} BoligKalkylen.dk
           </p>
           <p className="text-xs mt-1" style={{ color: "#B0A898" }}>
             Beregningerne opdateres løbende med danske markedspriser og energidata.

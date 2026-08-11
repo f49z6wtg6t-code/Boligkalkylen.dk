@@ -176,10 +176,7 @@ export default function ArticlesClient({ articles }: { articles: ArticleFrontmat
       <footer className="border-t py-6" style={{ borderColor: "#D4CCC0" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-sm" style={{ color: "#6B6356" }}>
-            © {new Date().getFullYear()} BoligKalkylen.dk — Drevet af{" "}
-            <a href="https://motivobyg.dk" style={{ color: "#6B6356" }}>
-              Motivo Gruppen
-            </a>
+            © {new Date().getFullYear()} BoligKalkylen.dk
           </p>
         </div>
       </footer>
