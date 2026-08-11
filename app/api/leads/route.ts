@@ -14,10 +14,11 @@ const leadSchema = z.object({
     .string()
     .length(4, "Postnummer skal være 4 cifre")
     .regex(/^\d{4}$/, "Ugyldigt postnummer"),
-  calculator_type: z.enum(["solceller", "badevaerelse"]),
+  calculator_type: z.enum(["solceller", "badevaerelse", "maler", "gulv", "isolering"]),
   beregnet_vaerdi: z.number().positive(),
   input_data: z.record(z.string(), z.unknown()),
   samtykke: z.literal(true, { error: "Du skal acceptere vilkårene" }),
+  session_id: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -34,7 +35,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Valideringsfejl", errors }, { status: 400 });
   }
 
-  const { samtykke: _samtykke, ...leadData } = parsed.data;
+  const { samtykke: _samtykke, session_id, ...leadData } = parsed.data;
 
   const supabase = createServerSupabaseClient();
 
@@ -44,8 +45,9 @@ export async function POST(request: NextRequest) {
       ...leadData,
       input_data: leadData.input_data,
       kilde: "boligkalkylen",
+      session_id: session_id ?? null,
     })
-    .select("id, created_at")
+    .select("id, created_at, source_ref")
     .single();
 
   if (error) {
@@ -57,10 +59,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Databasefejl", details: error.message }, { status: 500 });
   }
 
+  // Kobl lead til conversion funnel hvis vi har en session_id
+  if (session_id && data?.id) {
+    await supabase.from("lead_conversion_funnel").insert({
+      session_id,
+      funnel_stage: "lead_submitted",
+      calculator_type: leadData.calculator_type,
+      lead_id: data.id,
+    });
+  }
+
   const fullLead: LeadData = {
     ...leadData,
     id: data?.id,
     created_at: data?.created_at,
+    source_ref: data?.source_ref,
   };
 
   const emailResults = await Promise.allSettled([

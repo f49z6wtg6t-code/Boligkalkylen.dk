@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import AnalyticsProvider from "./analytics-provider";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col"
         style={{ backgroundColor: "#F5F0E8", color: "#1A2418" }}
       >
+        <AnalyticsProvider />
         {children}
       </body>
     </html>

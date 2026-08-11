@@ -12,10 +12,11 @@ export interface LeadData {
   telefon: string;
   email: string;
   postnr: string;
-  calculator_type: "solceller" | "badevaerelse";
+  calculator_type: "solceller" | "badevaerelse" | "maler" | "gulv" | "isolering";
   beregnet_vaerdi: number;
   input_data: Record<string, unknown>;
   created_at?: string;
+  source_ref?: string; // UUID til cross-tracking med Motivo Gruppen
 }
 
 function formatCurrency(n: number): string {
@@ -26,9 +27,16 @@ function formatCurrency(n: number): string {
   }).format(n);
 }
 
+const CALC_LABELS: Record<string, string> = {
+  solceller: "Solceller",
+  badevaerelse: "Badeværelse",
+  maler: "Maler",
+  gulv: "Gulvafslibning",
+  isolering: "Isolering",
+};
+
 function buildHtmlEmail(lead: LeadData): string {
-  const calcLabel =
-    lead.calculator_type === "solceller" ? "Solceller" : "Badeværelse";
+  const calcLabel = CALC_LABELS[lead.calculator_type] ?? lead.calculator_type;
 
   const inputRows = Object.entries(lead.input_data)
     .map(
@@ -66,8 +74,18 @@ function buildHtmlEmail(lead: LeadData): string {
       </table>
 
       ${
+        lead.source_ref
+          ? `<div style="margin-top:24px;background:#1a2a1a;border:1px solid #2A4A2A;border-radius:8px;padding:12px 16px;">
+               <div style="color:#5C8050;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Cross-tracking ref (Motivo)</div>
+               <div style="color:#C9F031;font-size:12px;font-family:monospace;">${lead.source_ref}</div>
+               <div style="color:#5C6B78;font-size:11px;margin-top:4px;">Brug denne ref til at koble leadet til en Motivo-ordre i BoligKalkylen Supabase → motivo_lead_links</div>
+             </div>`
+          : ""
+      }
+
+      ${
         lead.created_at
-          ? `<div style="margin-top:24px;color:#5C6B78;font-size:12px;">Modtaget: ${new Date(lead.created_at).toLocaleString("da-DK")}</div>`
+          ? `<div style="margin-top:16px;color:#5C6B78;font-size:12px;">Modtaget: ${new Date(lead.created_at).toLocaleString("da-DK")}</div>`
           : ""
       }
     </div>
@@ -78,8 +96,7 @@ function buildHtmlEmail(lead: LeadData): string {
 
 export async function sendLeadNotification(lead: LeadData): Promise<void> {
   const to = process.env.LEAD_NOTIFICATION_EMAIL ?? "aa@motivobyg.com";
-  const calcLabel =
-    lead.calculator_type === "solceller" ? "Solceller" : "Badeværelse";
+  const calcLabel = CALC_LABELS[lead.calculator_type] ?? lead.calculator_type;
 
   await getResend().emails.send({
     from:
@@ -92,8 +109,8 @@ export async function sendLeadNotification(lead: LeadData): Promise<void> {
 }
 
 function buildCustomerConfirmationEmail(lead: LeadData): string {
+  const calcLabel = CALC_LABELS[lead.calculator_type] ?? lead.calculator_type;
   const isSolceller = lead.calculator_type === "solceller";
-  const calcLabel = isSolceller ? "Solcelle" : "Badeværelse";
   const estimatLabel = isSolceller
     ? `Din beregnede årlige besparelse: <strong>${formatCurrency(lead.beregnet_vaerdi)}</strong>`
     : `Dit estimerede prisinterval: <strong>ca. ${formatCurrency(lead.beregnet_vaerdi)}</strong>`;
@@ -129,7 +146,7 @@ function buildCustomerConfirmationEmail(lead: LeadData): string {
 }
 
 export async function sendCustomerConfirmation(lead: LeadData): Promise<void> {
-  const calcLabel = lead.calculator_type === "solceller" ? "Solcelle" : "Badeværelse";
+  const calcLabel = CALC_LABELS[lead.calculator_type] ?? lead.calculator_type;
 
   await getResend().emails.send({
     from:

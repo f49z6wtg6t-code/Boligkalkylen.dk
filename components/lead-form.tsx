@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { getSessionId, trackCalculatorEvent, type CalculatorType } from "@/lib/analytics";
 
 interface LeadFormProps {
-  calculator_type: "solceller" | "badevaerelse" | "maler" | "gulv" | "isolering";
+  calculator_type: CalculatorType;
   beregnet_vaerdi: number;
   input_data: Record<string, unknown>;
 }
@@ -23,6 +24,7 @@ export default function LeadForm({
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const abandonedTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [form, setForm] = useState({
     navn: "",
@@ -31,6 +33,28 @@ export default function LeadForm({
     postnr: "",
     samtykke: false,
   });
+
+  // Track calculator_started én gang ved mount
+  useEffect(() => {
+    trackCalculatorEvent(calculator_type, "started", input_data, beregnet_vaerdi);
+
+    // Sæt abandoned-timer: 30 sek inaktivitet uden at åbne formularen
+    abandonedTimer.current = setTimeout(() => {
+      trackCalculatorEvent(calculator_type, "abandoned", input_data, beregnet_vaerdi);
+    }, 30_000);
+
+    return () => {
+      if (abandonedTimer.current) clearTimeout(abandonedTimer.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Annuller abandoned-timer hvis brugeren åbner formularen
+  function handleOpenForm() {
+    if (abandonedTimer.current) clearTimeout(abandonedTimer.current);
+    trackCalculatorEvent(calculator_type, "completed", input_data, beregnet_vaerdi);
+    setOpen(true);
+  }
 
   const label =
     calculator_type === "solceller"
@@ -58,6 +82,7 @@ export default function LeadForm({
           calculator_type,
           beregnet_vaerdi,
           input_data,
+          session_id: getSessionId(),
         }),
       });
 
@@ -111,7 +136,6 @@ export default function LeadForm({
     { stars: 4, quote: "Giver et realistisk interval — ikke et kunstigt lavt tal for at lokke.", name: "Jens P." },
   ];
 
-  // Pick 3 pseudo-random reviews based on calculator_type so each calculator shows different ones
   const OFFSETS: Record<string, number> = {
     solceller: 0, badevaerelse: 3, maler: 6, gulv: 9, isolering: 1,
   };
@@ -147,7 +171,7 @@ export default function LeadForm({
         {!open ? (
           <>
             <button
-              onClick={() => setOpen(true)}
+              onClick={handleOpenForm}
               className="w-full rounded-xl py-3 px-6 font-semibold text-sm transition-all duration-150"
               style={{
                 backgroundColor: "#2D5220",
