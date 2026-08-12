@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Gulvafslibning pris 2026 — gratis beregner",
   description:
     "Beregn prisen på gulvafslibning og lakering af dit trægulv. Baseret på m² og gulvets tilstand. Danske 2026-priser. Gratis estimat på 1 minut.",
+  alternates: { canonical: "https://boligkalkylen.dk/gulv" },
   openGraph: {
     title: "Gulvafslibning pris 2026 — gratis beregner",
     description:

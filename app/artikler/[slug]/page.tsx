@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${titleBody}${suffix}`,
     description,
+    alternates: { canonical: `https://boligkalkylen.dk/artikler/${slug}` },
   };
 }
 

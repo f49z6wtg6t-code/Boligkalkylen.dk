@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description:
     "Beregn prisen på solceller eller badeværelse på 1 minut. Gratis og uforpligtende — ingen kontaktoplysninger kræves.",
   metadataBase: new URL("https://boligkalkylen.dk"),
+  alternates: { canonical: "https://boligkalkylen.dk" },
   keywords: [
     "solcelleberegner",
     "solceller pris 2026",

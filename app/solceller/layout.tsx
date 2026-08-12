@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Solcelleberegner 2026 — beregn din besparelse gratis",
   description:
     "Se din årlige besparelse, tilbagebetalingstid og CO₂-reduktion ved solceller. Danske 2026-priser og elafgiftsregler. Gratis.",
+  alternates: { canonical: "https://boligkalkylen.dk/solceller" },
 };
 
 const JSON_LD = {

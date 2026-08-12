@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Badeværelse prisberegner 2026 — hvad koster din renovering?",
   description:
     "Prisestimat på badeværelsesrenovering efter størrelse, omfang og materialer. Danske håndværkerpriser 2026. Gratis og uforpligtende.",
+  alternates: { canonical: "https://boligkalkylen.dk/badevaerelse" },
 };
 
 const JSON_LD = {

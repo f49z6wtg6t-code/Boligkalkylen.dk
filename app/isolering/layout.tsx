@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Isoleringsberegner 2026 — hvad koster efterisolering?",
   description:
     "Beregn prisen på efterisolering af loft eller hulmur. Se din årlige varmebesparelse og tilbagebetalingstid. Gratis estimat.",
+  alternates: { canonical: "https://boligkalkylen.dk/isolering" },
   openGraph: {
     title: "Isoleringsberegner 2026 — hvad koster efterisolering?",
     description:

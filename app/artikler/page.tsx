@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Guides om solceller & badeværelse | BoligKalkylen.dk",
   description:
     "Læs vores guides om priser, regler og råd til solceller og badeværelsesrenovering. Baseret på danske 2026-priser og lovgivning.",
+  alternates: { canonical: "https://boligkalkylen.dk/artikler" },
 };
 
 export default function ArtiklerPage() {

@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Malerberegner 2026 — hvad koster maling af bolig?",
   description:
     "Beregn prisen på indvendig maling af din bolig på 1 minut. Baseret på m², tilstand og omfang. Danske 2026-priser. Gratis og uforpligtende.",
+  alternates: { canonical: "https://boligkalkylen.dk/maler" },
   openGraph: {
     title: "Malerberegner 2026 — hvad koster maling af bolig?",
     description:
