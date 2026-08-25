@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 import { getSessionId, trackCalculatorEvent, type CalculatorType } from "@/lib/analytics";
 
 interface LeadFormProps {
@@ -20,6 +20,7 @@ export default function LeadForm({
   beregnet_vaerdi,
   input_data,
 }: LeadFormProps) {
+  const samtykkeId = useId();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -274,14 +275,17 @@ export default function LeadForm({
               </div>
             </div>
 
-            <label className="flex items-start gap-3 cursor-pointer" onClick={() => setForm((f) => ({ ...f, samtykke: !f.samtykke }))}>
+            <label htmlFor={samtykkeId} className="flex items-start gap-3 cursor-pointer select-none">
               <div className="relative mt-0.5 flex-shrink-0">
                 <input
+                  id={samtykkeId}
                   type="checkbox"
+                  name="samtykke"
                   checked={form.samtykke}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, samtykke: e.target.checked }))
-                  }
+                  onChange={(e) => {
+                    setForm((f) => ({ ...f, samtykke: e.target.checked }));
+                    if (e.target.checked) setError(null);
+                  }}
                   className="sr-only"
                 />
                 <div
