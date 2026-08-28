@@ -100,9 +100,28 @@ export default function GulvPage() {
             >
               {formatDKK(result.minPris)} – {formatDKK(result.maxPris)} kr.
             </p>
-            <p className="text-sm mb-4" style={{ color: "#6B6356" }}>
+            <p className="text-sm mb-1" style={{ color: "#6B6356" }}>
               Estimeret midtpris: <strong style={{ color: "#1E1A14" }}>{formatDKK(result.midpoint)} kr.</strong>
             </p>
+            <p className="text-xs mb-3" style={{ color: "#9E9486" }}>
+              Alle priser er inkl. moms · Opstart, transport og afdækning er indregnet
+            </p>
+            {result.minimumsprisAnvendt && (
+              <div
+                className="rounded-xl px-4 py-3 mb-3 text-xs leading-relaxed"
+                style={{ backgroundColor: "#F5F0E8", border: "1px solid #D4CCC0", color: "#6B6356" }}
+              >
+                <strong style={{ color: "#1E1A14" }}>Bundgrænse anvendt.</strong> Transport, maskiner og opstart koster det samme uanset rummets størrelse — derfor er der en minimumspris for et gulvjob. Små rum er typisk dyrere pr. m² end store.
+              </div>
+            )}
+            {tilstand === "daarlig" && (
+              <div
+                className="rounded-xl px-4 py-3 mb-3 text-xs leading-relaxed"
+                style={{ backgroundColor: "#F5F0E8", border: "1px solid #D4CCC0", color: "#6B6356" }}
+              >
+                <strong style={{ color: "#1E1A14" }}>Hvorfor er prisen højere ved dårlig stand?</strong> Et gulv i dårlig stand kræver flere slibegange med grovere startkorn, spartling af skader og revner, og i værste fald udskiftning af enkelte brædder. Toppen af prisintervallet afspejler disse ekstraomkostninger.
+              </div>
+            )}
             <div
               className="rounded-xl p-4 text-sm"
               style={{ backgroundColor: "#F5F0E8", border: "1px solid #D4CCC0" }}
