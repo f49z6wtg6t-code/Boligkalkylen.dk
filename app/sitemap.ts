@@ -78,6 +78,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: "https://boligkalkylen.dk/gulvafslibning-lakering",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/gulvafslibning-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/gulvslibning-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/klinker-25-kvm",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
       url: "https://boligkalkylen.dk/artikler",
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
