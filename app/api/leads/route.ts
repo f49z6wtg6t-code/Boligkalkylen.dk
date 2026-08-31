@@ -14,7 +14,7 @@ const leadSchema = z.object({
     .string()
     .length(4, "Postnummer skal være 4 cifre")
     .regex(/^\d{4}$/, "Ugyldigt postnummer"),
-  calculator_type: z.enum(["solceller", "badevaerelse", "maler", "gulv", "isolering"]),
+  calculator_type: z.enum(["solceller", "badevaerelse", "maler", "gulv", "isolering", "klinker"]),
   beregnet_vaerdi: z.number().positive(),
   input_data: z.record(z.string(), z.unknown()),
   samtykke: z.literal(true, { error: "Du skal acceptere vilkårene" }),

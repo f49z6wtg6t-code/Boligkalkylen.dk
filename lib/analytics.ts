@@ -9,7 +9,8 @@ export type CalculatorType =
   | "badevaerelse"
   | "maler"
   | "gulv"
-  | "isolering";
+  | "isolering"
+  | "klinker";
 
 export type CalculatorEventType = "started" | "completed" | "abandoned";
 
