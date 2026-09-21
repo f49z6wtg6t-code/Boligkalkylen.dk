@@ -12,7 +12,7 @@ export interface LeadData {
   telefon: string;
   email: string;
   postnr: string;
-  calculator_type: "solceller" | "badevaerelse" | "maler" | "gulv" | "isolering";
+  calculator_type: "solceller" | "badevaerelse" | "maler" | "gulv" | "isolering" | "klinker";
   beregnet_vaerdi: number;
   input_data: Record<string, unknown>;
   created_at?: string;
@@ -33,6 +33,7 @@ const CALC_LABELS: Record<string, string> = {
   maler: "Maler",
   gulv: "Gulvafslibning",
   isolering: "Isolering",
+  klinker: "Klinker",
 };
 
 function buildHtmlEmail(lead: LeadData): string {
