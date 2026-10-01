@@ -15,6 +15,7 @@ import {
   calculateBadevaerelse,
   type BadevaerelseInputs,
 } from "@/lib/calculators/badevaerelse";
+import PartnerProducts from "@/components/partner-products";
 
 function formatDKK(n: number): string {
   return new Intl.NumberFormat("da-DK", { maximumFractionDigits: 0 }).format(n);
@@ -130,6 +131,11 @@ export default function BadevaerelserPage() {
       description="Vælg størrelse, omfang og materialer for at se et realistisk prisestimat."
       result={
         <>
+          {/* Partnerprodukter — øverst ved premium/luksus */}
+          {(inputs.materialer === "premium" || inputs.materialer === "luksus") && (
+            <PartnerProducts materialer={inputs.materialer} />
+          )}
+
           {/* Big price range */}
           <div
             className="rounded-2xl p-5 sm:p-6"
@@ -239,6 +245,11 @@ export default function BadevaerelserPage() {
             beregnet_vaerdi={result.midpoint}
             input_data={inputData}
           />
+
+          {/* Partnerprodukter — nederst ved standard */}
+          {inputs.materialer === "standard" && (
+            <PartnerProducts materialer={inputs.materialer} />
+          )}
 
           <p className="text-xs leading-relaxed" style={{ color: "#6B6356" }}>
             * Estimaterne er vejledende og baseret på gennemsnitlige markedspriser.

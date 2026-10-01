@@ -19,6 +19,7 @@ const leadSchema = z.object({
   input_data: z.record(z.string(), z.unknown()),
   samtykke: z.literal(true, { error: "Du skal acceptere vilkårene" }),
   session_id: z.string().optional(),
+  vil_have_moebeltilbud: z.boolean().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -35,14 +36,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Valideringsfejl", errors }, { status: 400 });
   }
 
-  const { samtykke: _samtykke, session_id, ...leadData } = parsed.data;
+  const { samtykke: _samtykke, session_id, vil_have_moebeltilbud, ...leadData } = parsed.data;
 
   const supabase = createServerSupabaseClient();
+
+  // vil_have_moebeltilbud gemmes kun når kolonnen er migreret (migration 005).
+  // Feltet udelades indtil da for at undgå Supabase-fejl.
+  const extraFields =
+    vil_have_moebeltilbud !== undefined ? { vil_have_moebeltilbud } : {};
 
   const { data, error } = await supabase
     .from("leads")
     .insert({
       ...leadData,
+      ...extraFields,
       input_data: leadData.input_data,
       kilde: "boligkalkylen",
       session_id: session_id ?? null,

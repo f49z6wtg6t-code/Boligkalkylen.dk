@@ -21,6 +21,7 @@ export default function LeadForm({
   input_data,
 }: LeadFormProps) {
   const samtykkeId = useId();
+  const moebeltilbudId = useId();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -33,6 +34,7 @@ export default function LeadForm({
     email: "",
     postnr: "",
     samtykke: false,
+    vil_have_moebeltilbud: false,
   });
 
   // Track calculator_started én gang ved mount
@@ -75,15 +77,17 @@ export default function LeadForm({
 
     setLoading(true);
     try {
+      const { vil_have_moebeltilbud, ...formRest } = form;
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...form,
+          ...formRest,
           calculator_type,
           beregnet_vaerdi,
           input_data,
           session_id: getSessionId(),
+          ...(calculator_type === "badevaerelse" && { vil_have_moebeltilbud }),
         }),
       });
 
@@ -313,6 +317,45 @@ export default function LeadForm({
                 baseret på mine beregninger.
               </span>
             </label>
+
+            {calculator_type === "badevaerelse" && (
+              <label htmlFor={moebeltilbudId} className="flex items-start gap-3 cursor-pointer select-none">
+                <div className="relative mt-0.5 flex-shrink-0">
+                  <input
+                    id={moebeltilbudId}
+                    type="checkbox"
+                    name="vil_have_moebeltilbud"
+                    checked={form.vil_have_moebeltilbud}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, vil_have_moebeltilbud: e.target.checked }))
+                    }
+                    className="sr-only"
+                  />
+                  <div
+                    className="w-5 h-5 rounded flex items-center justify-center transition-colors"
+                    style={{
+                      backgroundColor: form.vil_have_moebeltilbud ? "#3A6B2A" : "#FFFFFF",
+                      border: form.vil_have_moebeltilbud ? "none" : "1px solid #B8B0A4",
+                    }}
+                  >
+                    {form.vil_have_moebeltilbud && (
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path
+                          d="M2 6l3 3 5-5"
+                          stroke="#F6F4EF"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+                <span className="text-xs leading-relaxed" style={{ color: "#6B6356" }}>
+                  Jeg vil også gerne have tilbud på bademøbel med montering.
+                </span>
+              </label>
+            )}
 
             {error && (
               <p
