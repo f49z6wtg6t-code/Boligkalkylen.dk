@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { createServerSupabaseClient } from "@/lib/supabase";
 import { sendLeadNotification, sendCustomerConfirmation, type LeadData } from "@/lib/email";
+import { checkLeadRateLimit, getClientIp } from "@/lib/rate-limit";
 
 const leadSchema = z.object({
   navn: z.string().min(2, "Navn er påkrævet"),
@@ -23,6 +24,16 @@ const leadSchema = z.object({
 });
 
 export async function POST(request: NextRequest) {
+  // Rate limit: maks 5 indsendelser per IP per 60 minutter
+  const ip = getClientIp(request);
+  const { allowed } = await checkLeadRateLimit(ip);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "For mange indsendelser. Prøv igen om en time." },
+      { status: 429 }
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
