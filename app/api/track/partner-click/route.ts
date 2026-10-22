@@ -10,7 +10,13 @@ export async function POST(request: NextRequest) {
     const { product_slug, calculator_type, materialer, session_id } =
       body as Record<string, unknown>;
 
-    if (!session_id) {
+    const VALID_SLUGS = ["esther-med-sprosse", "margrethe", "esther-uden-greb"];
+    if (
+      !session_id ||
+      typeof session_id !== "string" ||
+      session_id.length > 64 ||
+      (product_slug && !VALID_SLUGS.includes(product_slug as string))
+    ) {
       return NextResponse.json({ ok: false }, { status: 400 });
     }
 

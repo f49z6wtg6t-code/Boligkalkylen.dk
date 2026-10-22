@@ -13,6 +13,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false }, { status: 400 });
     }
 
+    // Afvis unormalt lange strenge for at forhindre database-spam
+    const MAX = 500;
+    if (
+      path.length > MAX ||
+      (session_id && session_id.length > 64) ||
+      (referrer && referrer.length > MAX) ||
+      (user_agent && user_agent.length > MAX)
+    ) {
+      return NextResponse.json({ ok: false }, { status: 400 });
+    }
+
     const supabase = createServerSupabaseClient();
     await supabase.from("pageviews").insert({
       path,
