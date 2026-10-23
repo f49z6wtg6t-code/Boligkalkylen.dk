@@ -108,6 +108,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: "https://boligkalkylen.dk/maling-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/maler-pris-m2",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/male-lejlighed-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/loftisolering-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/hulmursisolering-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
+      url: "https://boligkalkylen.dk/efterisolering-pris",
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    {
       url: "https://boligkalkylen.dk/artikler",
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
