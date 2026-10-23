@@ -9,6 +9,12 @@ const RELATED_ARTICLES = [
   { slug: "badevaerelse-alder-hus-hvad-koester", title: "Ekstraomkostningerne i ældre huse" },
   { slug: "badevaerelse-5-fejl-undgaa", title: "5 fejl du skal undgå" },
 ];
+
+const INTENT_PAGES = [
+  { href: "/gulvafslibning-pris", title: "Hvad koster gulvafslibning? Priser 2026" },
+  { href: "/gulvafslibning-lakering", title: "Gulvafslibning og lakering — pris 2026" },
+  { href: "/gulvslibning-pris", title: "Gulvslibning pris 2026 — hvad koster det?" },
+];
 import LeadForm from "@/components/lead-form";
 import FAQSection from "@/components/faq-section";
 import { calculateGulv, type GulvTilstand, type GulvEfterbehandling } from "@/lib/calculators/gulv";
@@ -215,8 +221,32 @@ export default function GulvPage() {
       </div>
     </CalculatorShell>
 
-    {/* Læs mere */}
+    {/* Prisguider */}
     <section className="px-4 sm:px-6 py-10" style={{ borderTop: "1px solid #D4CCC0" }}>
+      <div className="max-w-6xl mx-auto">
+        <p className="text-sm font-semibold mb-4" style={{ color: "#6B6356" }}>
+          Prisguider til gulvrenovering
+        </p>
+        <div className="flex flex-wrap gap-3">
+          {INTENT_PAGES.map((p) => (
+            <Link
+              key={p.href}
+              href={p.href}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-150"
+              style={{ backgroundColor: "#EDE8DC", border: "1px solid #D4CCC0", color: "#3A6B2A" }}
+            >
+              {p.title}
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Læs mere */}
+    <section className="px-4 sm:px-6 pb-10">
       <div className="max-w-6xl mx-auto">
         <p className="text-sm font-semibold mb-4" style={{ color: "#6B6356" }}>
           Læs mere om gulvrenovering
